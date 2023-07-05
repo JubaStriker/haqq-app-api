@@ -307,9 +307,10 @@ app.post("/api/delete_charges", async (req, res) => {
 
 app.get("/api/get_shop", async (req, res) => {
   try {
-    const { shop } = req.query;
+    const { shop, blockchain } = req.query;
+
     const data = await get_shop({
-      params: { shop },
+      params: { shop, blockchain },
     });
     res.status(200).json(data);
   } catch (e) {
