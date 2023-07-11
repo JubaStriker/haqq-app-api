@@ -38,6 +38,8 @@ const {
 const { put_shop } = require("./cloud/shop/put");
 const { get_shop } = require("./cloud/shop/get");
 const { post_coupon } = require("./cloud/coupon/post");
+const { get_xrp_payment, verify_xrp_payment, } = require("./cloud/xrp-payment/get");
+
 
 const app = express();
 app.use(cookieParser());
@@ -366,6 +368,31 @@ app.get("/api/get_pools", async (req, res) => {
     res.status(200).json(data);
   } catch (e) {
     res.status(500).json(e);
+  }
+});
+
+
+app.get("/api/get_xrp_payment", async (req, res) => {
+  try {
+    const { shop, id } = req.query;
+    const data = await get_xrp_payment({
+      params: { shop, id },
+    });
+    res.status(200).json(data);
+  } catch (e) {
+    res.status(e.code).json(e);
+  }
+});
+
+app.get("/api/verify_xrp_payment", async (req, res) => {
+  try {
+    const { txid } = req.query;
+    const data = await verify_xrp_payment({
+      params: { txid },
+    });
+    res.status(200).json(data);
+  } catch (e) {
+    res.status(e.code).json(e);
   }
 });
 
