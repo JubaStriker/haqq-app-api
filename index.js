@@ -181,10 +181,10 @@ app.get("/api/get_products", async (req, res) => {
 
 app.post("/api/post_looks", async (req, res) => {
   try {
-    const { shop, name, price, medias, products, id } = req.body;
+    const { shop, name, price, medias, products, id, blockchain, lookHbarPrice, lookXrpPrice } = req.body;
 
     const data = await post_looks({
-      params: { shop, name, price, medias, products, id },
+      params: { shop, name, price, medias, products, id, blockchain, lookHbarPrice, lookXrpPrice },
     });
     // console.log(data);
     res.status(200).json(data);

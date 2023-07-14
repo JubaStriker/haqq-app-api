@@ -8,12 +8,16 @@ module.exports = {
 			shop,
 			name,
 			price,
-			hBarPrice,
+			lookHbarPrice,
+			lookXrpPrice,
+			blockchain,
 			medias,
 			products,
 			id = '',
 		} = params;
-		if (exists(shop)) { 
+
+		console.log("Params: ", params)
+		if (exists(shop)) {
 			try {
 				const looksInstance = parseUtils.instance('Looks')
 				if (id) {
@@ -21,10 +25,14 @@ module.exports = {
 				}
 				looksInstance.set('name', name);
 				looksInstance.set('price', price);
-				looksInstance.set('hBarPrice', parseFloat(hBarPrice));
+				looksInstance.set('hbarPrice', parseFloat(lookHbarPrice));
+				looksInstance.set('xrpPrice', parseFloat(lookXrpPrice));
 				looksInstance.set('medias', medias);
 				looksInstance.set('products', products);
 				looksInstance.set('shop', shop);
+				looksInstance.set('blockchain', blockchain);
+
+
 				// if (Parse.User.current() && Parse.User.current().id) {
 				// 	looks.set('createdBy', Parse.User.current());
 				// 	const acl = new Parse.ACL();
