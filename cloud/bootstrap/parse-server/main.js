@@ -8,6 +8,7 @@ const xrpPayment = require("../../xrp-payment");
 const nfts = require("../../nfts");
 const transferNft = require("../../transferNft");
 const badgeNft = require("../../badgeNFT");
+const getOrders = require("../../orders");
 
 user.initRoutes();
 products.initRoutes();
@@ -19,3 +20,4 @@ xrpPayment.initRoutes();
 nfts.initRoutes();
 transferNft.initRoutes();
 badgeNft.initRoutes();
+getOrders.initRoutes();

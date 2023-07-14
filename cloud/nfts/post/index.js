@@ -24,6 +24,8 @@ module.exports = {
                         "NFTokenTaxon": 0
                     }
 
+
+
                     // ----------------------------------------------------- Submit signed blob 
                     const tx = await client.submitAndWait(transactionJson, { wallet: standby_wallet })
 

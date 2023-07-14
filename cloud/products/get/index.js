@@ -22,7 +22,8 @@ module.exports = {
 					});
 					const products = await shopifyNodeInstance.product.list({ ids: ids.join(',') });
 					return products
-				} else {
+				}
+				else {
 					const { code, message } = errors.constructErrorObject(400);
 					throw new Parse.Error(code, message);
 				}

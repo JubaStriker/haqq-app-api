@@ -39,6 +39,11 @@ const { put_shop } = require("./cloud/shop/put");
 const { get_shop } = require("./cloud/shop/get");
 const { post_coupon } = require("./cloud/coupon/post");
 const { get_xrp_payment, verify_xrp_payment, } = require("./cloud/xrp-payment/get");
+const { badge_nft } = require("./cloud/badgeNFT/post");
+const { create_nft } = require("./cloud/nfts/post");
+const { transfer_nft } = require("./cloud/transferNft/post");
+const { get_badge } = require("./cloud/badgeNFT/get");
+const { get_orders } = require("./cloud/orders/get");
 
 
 const app = express();
@@ -159,6 +164,18 @@ app.get("/api/get_looks", async (req, res) => {
     const { shop, id } = req.query;
     const data = await get_looks({
       params: { shop, id },
+    });
+    res.status(200).json(data);
+  } catch (e) {
+    res.status(e.code).json(e);
+  }
+});
+
+app.get("/api/get_orders", async (req, res) => {
+  try {
+    const { shop } = req.query;
+    const data = await get_orders({
+      params: { shop },
     });
     res.status(200).json(data);
   } catch (e) {
