@@ -396,6 +396,61 @@ app.get("/api/verify_xrp_payment", async (req, res) => {
   }
 });
 
+app.post("/api/create_nft", async (req, res) => {
+  try {
+    const { seed, uri, transferFee, flags, method } = req.body;
+    const data = await create_nft({
+      params: { seed, uri, transferFee, flags, method },
+    });
+    res.status(200).json(data);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json(e);
+  }
+});
+
+app.post("/api/transfer_nft", async (req, res) => {
+  try {
+    const { seed, tokenID, flags, amount, expiration, destination } = req.body;
+    const data = await transfer_nft({
+      params: { seed, tokenID, flags, amount, expiration, destination },
+    });
+    res.status(200).json(data);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json(e);
+  }
+});
+
+app.post("/api/badge_nft", async (req, res) => {
+  try {
+    const { title, description, image } = req.body;
+    const data = await badge_nft({
+      params: { title, description, image },
+    });
+    res.status(200).json(data);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json(e);
+  }
+});
+
+
+app.get("/api/badge_nft", async (req, res) => {
+  try {
+    const { id } = req.query;
+    const data = await get_badge({
+      params: { id },
+    });
+    res.status(200).json(data);
+  } catch (e) {
+    res.status(500).json(e);
+  }
+});
+
 app.get("*", (req, res) => {
   const { shop = "", session } = req.query;
   if (shop && session) {
