@@ -21,9 +21,7 @@ module.exports = {
                 );
                 const look = await get_looks({ params: { shop, id } });
                 const shopData = await get_shop({ params: { shop, blockchain } });
-                // console.log(shopData.get('walletAddress'))
-                // console.log(look.get('xrpPrice'))
-                // console.log(shopData.walletAddress)
+
                 const Verify = new TxData();
                 const request = {
                     txjson: {
@@ -41,6 +39,17 @@ module.exports = {
                         }
                     }
                 );
+
+
+                // const resolvedData = await subscription.resolved;
+                // if (resolvedData.signed == false) {
+                //     console.log("The sign request was rejected")
+                // }
+                // else {
+                //     const result = await Sdk.payload.get(resolvedData.payload_uuidv4)
+                //     console.log("----------------Result-----------------", result.response)
+                // }
+
                 return {
                     qr: subscription.created.refs.qr_png,
                     status: subscription.created.refs.websocket_status,

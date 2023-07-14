@@ -9,7 +9,6 @@ module.exports = {
         if (exists(shop)) {
             try {
 
-                console.log("API hit!");
                 const shopQuery = parseUtils.query('Shop');
                 shopQuery.equalTo('shop', shop);
                 let shopInstance = await shopQuery.first({ useMasterKey: true });
@@ -31,7 +30,7 @@ module.exports = {
                     const orders = await shopifyNodeInstance.order.list({ limit: 50 });
 
                     console.log(orders, "Orders");
-                    // return products
+                    return orders;
                 }
 
             } catch (e) {

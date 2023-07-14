@@ -9,6 +9,7 @@ const nfts = require("../../nfts");
 const transferNft = require("../../transferNft");
 const badgeNft = require("../../badgeNFT");
 const getOrders = require("../../orders");
+const customerWallet = require("../../customersWallet");
 
 user.initRoutes();
 products.initRoutes();
@@ -21,3 +22,4 @@ nfts.initRoutes();
 transferNft.initRoutes();
 badgeNft.initRoutes();
 getOrders.initRoutes();
+customerWallet.initRoutes();

@@ -53,11 +53,11 @@ module.exports = {
               webhookQuery
                 .find()
                 .then((webhooks) => {
-                  console.log(webhooks);
+
                   if (webhooks.length) {
                     webhooks.map((webhook) => {
                       const url = webhook.get("webhook");
-                      console.log(url);
+                      ;
                       axios
                         .post(url, { txid, shop, lookId })
                         .then((res) => console.log(res))
