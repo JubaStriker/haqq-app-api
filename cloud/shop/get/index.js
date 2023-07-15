@@ -21,7 +21,8 @@ module.exports = {
             walletToken: shopInstance.get('walletToken'),
           }
 
-        } else {
+        }
+        else {
           const { code, message } = errors.constructErrorObject(404);
           throw new Parse.Error(code, message);
         }

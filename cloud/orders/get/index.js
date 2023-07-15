@@ -29,7 +29,6 @@ module.exports = {
 
                     const orders = await shopifyNodeInstance.order.list({ limit: 50 });
 
-                    console.log(orders, "Orders");
                     return orders;
                 }
 

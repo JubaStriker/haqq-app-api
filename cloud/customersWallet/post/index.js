@@ -8,7 +8,7 @@ module.exports = {
 
         if (exists(code)) {
             try {
-                console.log(code, walletAddress);
+
                 const customersWallerInstance = parseUtils.instance('CustomersWallet')
                 customersWallerInstance.set('code', code);
                 customersWallerInstance.set('walletAddress', walletAddress);

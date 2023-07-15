@@ -430,9 +430,9 @@ app.post("/api/create_nft", async (req, res) => {
 
 app.post("/api/transfer_nft", async (req, res) => {
   try {
-    const { seed, tokenID, flags, amount, expiration, destination } = req.body;
+    const { seed, tokenID, flags, amount, expiration, code } = req.body;
     const data = await transfer_nft({
-      params: { seed, tokenID, flags, amount, expiration, destination },
+      params: { seed, tokenID, flags, amount, expiration, code },
     });
     res.status(200).json(data);
 
