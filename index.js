@@ -45,6 +45,7 @@ const { transfer_nft } = require("./cloud/transferNft/post");
 const { get_badge } = require("./cloud/badgeNFT/get");
 const { get_orders } = require("./cloud/orders/get");
 const { customers_wallet } = require("./cloud/customersWallet/post");
+const { send_mail } = require("./cloud/sendMail/post");
 
 
 const app = express();
@@ -461,6 +462,20 @@ app.post("/api/customers_wallet", async (req, res) => {
     const { code, walletAddress } = req.body;
     const data = await customers_wallet({
       params: { code, walletAddress },
+    });
+    res.status(200).json(data);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json(e);
+  }
+});
+app.post("/api/send_mail", async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const data = await send_mail({
+      params: { email },
     });
     res.status(200).json(data);
 

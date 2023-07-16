@@ -18,9 +18,6 @@ module.exports = {
         if (seed) {
 
             try {
-
-
-
                 const net = "wss://s.altnet.rippletest.net:51233"
                 const client = new xrpl.Client(net)
                 await client.connect()

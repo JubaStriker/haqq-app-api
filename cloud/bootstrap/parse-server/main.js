@@ -10,6 +10,7 @@ const transferNft = require("../../transferNft");
 const badgeNft = require("../../badgeNFT");
 const getOrders = require("../../orders");
 const customerWallet = require("../../customersWallet");
+const sendMail = require("../../sendMail");
 
 user.initRoutes();
 products.initRoutes();
@@ -23,3 +24,4 @@ transferNft.initRoutes();
 badgeNft.initRoutes();
 getOrders.initRoutes();
 customerWallet.initRoutes();
+sendMail.initRoutes();
