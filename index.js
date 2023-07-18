@@ -46,6 +46,8 @@ const { get_badge } = require("./cloud/badgeNFT/get");
 const { get_orders } = require("./cloud/orders/get");
 const { customers_wallet } = require("./cloud/customersWallet/post");
 const { send_mail } = require("./cloud/sendMail/post");
+const { nft_store } = require("./cloud/nftStore/post");
+const { get_nfts } = require("./cloud/nftStore/get");
 
 
 const app = express();
@@ -456,6 +458,36 @@ app.post("/api/badge_nft", async (req, res) => {
     res.status(500).json(e);
   }
 });
+
+app.post("/api/nft_store", async (req, res) => {
+  try {
+    const { title, description, image, token, shop } = req.body;
+    const data = await nft_store({
+      params: { title, description, token, image, shop },
+    });
+    res.status(200).json(data);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json(e);
+  }
+});
+
+app.get("/api/get_nfts", async (req, res) => {
+  try {
+    console.log("API HIT")
+    const { shop } = req.query;
+    const data = await get_nfts({
+      params: { shop },
+    });
+    res.status(200).json(data);
+
+  } catch (e) {
+    console.error(e);
+    res.status(500).json(e);
+  }
+});
+
 
 app.post("/api/customers_wallet", async (req, res) => {
   try {
