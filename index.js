@@ -475,7 +475,7 @@ app.post("/api/nft_store", async (req, res) => {
 
 app.get("/api/get_nfts", async (req, res) => {
   try {
-    console.log("API HIT")
+
     const { shop } = req.query;
     const data = await get_nfts({
       params: { shop },

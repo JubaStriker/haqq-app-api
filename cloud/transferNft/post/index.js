@@ -77,8 +77,28 @@ module.exports = {
                         const payload = await xumm.payload.create(request, true);
                         console.log("Payload", payload)
                         nftSellOffers.payload = payload;
-                        console.log(nftSellOffers)
 
+
+
+                    }
+
+                    if (exists(tokenID)) {
+                        try {
+                            const nftsQuery = parseUtils.query("Nfts");
+                            nftsQuery.equalTo("token", tokenID);
+                            const nftsInstance = await nftsQuery.first();
+                            nftsInstance.set('transferred', true);
+                            // const data = await nftsInstance.destroy();
+                            const data = await nftsInstance.save(null);
+                            console.log(data);
+                        }
+                        catch (e) {
+                            const { code, message } = errors.constructErrorObject(
+                                e.code || e.statusCode || 500,
+                                e
+                            );
+                            throw new Parse.Error(code, message);
+                        }
                     }
 
                     return nftSellOffers;

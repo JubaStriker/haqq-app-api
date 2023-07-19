@@ -7,15 +7,17 @@ module.exports = {
         const { shop } = params;
         if (exists(shop)) {
             try {
-                console.log("api hit", shop);
+
                 const nftsQuery = parseUtils.query("Nfts");
                 nftsQuery.equalTo("shop", shop);
+                nftsQuery.equalTo("transferred", false);
+                nftsQuery.descending("createdAt");
 
 
                 const nftsInstance = await nftsQuery.find();
 
                 if (nftsInstance) {
-                    console.log(nftsInstance);
+
                     return nftsInstance;
                 }
                 else {

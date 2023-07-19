@@ -11,6 +11,7 @@ module.exports = {
         looksInstance.id = id;
         // const data = await looks.destroy(Parse.User.current());
         const data = await looksInstance.destroy();
+        console.log("data", data)
         return data;
       } catch (e) {
         const { code, message } = errors.constructErrorObject(e.code || 500);

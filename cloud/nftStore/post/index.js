@@ -15,6 +15,7 @@ module.exports = {
                 nftsInstance.set('image', image);
                 nftsInstance.set('token', token);
                 nftsInstance.set('shop', shop);
+                nftsInstance.set('transferred', false)
 
                 const data = await nftsInstance.save(null);
 
