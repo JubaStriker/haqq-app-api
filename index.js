@@ -39,15 +39,15 @@ const { put_shop } = require("./cloud/shop/put");
 const { get_shop } = require("./cloud/shop/get");
 const { post_coupon } = require("./cloud/coupon/post");
 const { get_xrp_payment, verify_xrp_payment, } = require("./cloud/xrp-payment/get");
-const { badge_nft } = require("./cloud/badgeNFT/post");
+const { badge_nft } = require("./cloud/badge-nft/post");
 const { create_nft } = require("./cloud/nfts/post");
 const { transfer_nft } = require("./cloud/transfer-nft/post");
-const { get_badge } = require("./cloud/badgeNFT/get");
+const { get_badge } = require("./cloud/badge-nft/get");
 const { get_orders } = require("./cloud/orders/get");
-const { customers_wallet } = require("./cloud/customersWallet/post");
-const { send_mail } = require("./cloud/sendMail/post");
-const { nft_store } = require("./cloud/nftStore/post");
-const { get_nfts } = require("./cloud/nftStore/get");
+const { customers_wallet } = require("./cloud/customers-wallet/post");
+const { send_mail } = require("./cloud/send-mail/post");
+const { nft_store } = require("./cloud/nft-store/post");
+const { get_nfts } = require("./cloud/nft-store/get");
 
 
 const app = express();

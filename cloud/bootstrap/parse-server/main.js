@@ -7,11 +7,11 @@ const pools = require("../../pools");
 const xrpPayment = require("../../xrp-payment");
 const nfts = require("../../nfts");
 const transferNft = require("../../transfer-nft");
-const badgeNft = require("../../badgeNFT");
+const badgeNft = require("../../badge-nft");
 const getOrders = require("../../orders");
-const customerWallet = require("../../customersWallet");
-const sendMail = require("../../sendMail");
-const nftStore = require("../../nftStore");
+const customerWallet = require("../../customers-wallet");
+const sendMail = require("../../send-mail");
+const nftStore = require("../../nft-store");
 
 user.initRoutes();
 products.initRoutes();
