@@ -7,22 +7,19 @@ module.exports = {
     const { shop, blockchain } = params;
     if (exists(shop, blockchain)) {
       try {
-
         const shopQuery = parseUtils.query("Shop");
         shopQuery.equalTo("shop", shop);
-        shopQuery.equalTo("blockchain", blockchain);
+        // shopQuery.equalTo("blockchain", blockchain);
 
         const shopInstance = await shopQuery.first({ useMasterKey: true });
 
         if (shopInstance) {
           return {
-            shop: shopInstance.get('shop'),
-            walletAddress: shopInstance.get('walletAddress'),
-            walletToken: shopInstance.get('walletToken'),
-          }
-
-        }
-        else {
+            shop: shopInstance.get("shop"),
+            walletAddress: shopInstance.get("walletAddress"),
+            walletToken: shopInstance.get("walletToken"),
+          };
+        } else {
           const { code, message } = errors.constructErrorObject(404);
           throw new Parse.Error(code, message);
         }
@@ -35,13 +32,13 @@ module.exports = {
     }
   },
   initRoutes(req, res) {
-    Parse.Cloud.define('get_shop', async (req) => {
+    Parse.Cloud.define("get_shop", async (req) => {
       try {
         const { data } = await this.get_shop(req);
         return data;
       } catch (e) {
-        throw e
+        throw e;
       }
-    })
-  }
-}
+    });
+  },
+};
