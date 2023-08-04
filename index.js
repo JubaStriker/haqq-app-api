@@ -202,10 +202,10 @@ app.get("/api/get_products", async (req, res) => {
 
 app.post("/api/post_looks", async (req, res) => {
   try {
-    const { shop, name, price, medias, products, id, blockchain, lookHbarPrice, lookXrpPrice } = req.body;
+    const { shop, name, price, medias, products, id, blockchain, lookHbarPrice, lookXrpPrice, lookNearPrice, cryptoReceiver } = req.body;
 
     const data = await post_looks({
-      params: { shop, name, price, medias, products, id, blockchain, lookHbarPrice, lookXrpPrice },
+      params: { shop, name, price, medias, products, id, blockchain, lookHbarPrice, lookXrpPrice, lookNearPrice, cryptoReceiver },
     });
     // console.log(data);
     res.status(200).json(data);
@@ -357,10 +357,10 @@ app.post("/api/post_coupon", async (req, res) => {
 
 app.post("/api/put_shop", async (req, res) => {
   try {
-    const { shop, walletAddress, walletToken } = req.body;
+    const { shop, walletAddress, walletToken, blockchain } = req.body;
     console.log(req.body);
     const data = await put_shop({
-      params: { shop, walletAddress, walletToken },
+      params: { shop, walletAddress, walletToken, blockchain },
     });
     res.status(200).json(data);
   } catch (e) {

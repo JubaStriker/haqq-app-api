@@ -10,13 +10,14 @@ module.exports = {
 			price,
 			lookHbarPrice,
 			lookXrpPrice,
+			lookNearPrice,
+			cryptoReceiver,
 			blockchain,
 			medias,
 			products,
 			id = '',
 		} = params;
 
-		console.log("Params: ", params)
 		if (exists(shop)) {
 			try {
 				const looksInstance = parseUtils.instance('Looks')
@@ -27,10 +28,13 @@ module.exports = {
 				looksInstance.set('price', price);
 				looksInstance.set('hbarPrice', parseFloat(lookHbarPrice));
 				looksInstance.set('xrpPrice', parseFloat(lookXrpPrice));
+				looksInstance.set('nearPrice', parseFloat(lookNearPrice));
 				looksInstance.set('medias', medias);
 				looksInstance.set('products', products);
 				looksInstance.set('shop', shop);
 				looksInstance.set('blockchain', blockchain);
+				looksInstance.set('cryptoReceiver', cryptoReceiver);
+
 
 
 				// if (Parse.User.current() && Parse.User.current().id) {

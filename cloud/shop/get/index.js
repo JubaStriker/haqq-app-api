@@ -9,7 +9,7 @@ module.exports = {
       try {
         const shopQuery = parseUtils.query("Shop");
         shopQuery.equalTo("shop", shop);
-        // shopQuery.equalTo("blockchain", blockchain);
+        shopQuery.equalTo("blockchain", blockchain);
 
         const shopInstance = await shopQuery.first({ useMasterKey: true });
 
