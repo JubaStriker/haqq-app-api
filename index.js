@@ -202,10 +202,10 @@ app.get("/api/get_products", async (req, res) => {
 
 app.post("/api/post_looks", async (req, res) => {
   try {
-    const { shop, name, price, medias, products, id, blockchain, lookHbarPrice, lookXrpPrice, lookNearPrice, cryptoReceiver } = req.body;
+    const { shop, name, price, medias, products, id, blockchain, lookCryptoPrice, cryptoReceiver } = req.body;
 
     const data = await post_looks({
-      params: { shop, name, price, medias, products, id, blockchain, lookHbarPrice, lookXrpPrice, lookNearPrice, cryptoReceiver },
+      params: { shop, name, price, medias, products, id, blockchain, lookCryptoPrice, cryptoReceiver },
     });
     // console.log(data);
     res.status(200).json(data);

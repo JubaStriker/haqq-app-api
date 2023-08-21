@@ -8,9 +8,7 @@ module.exports = {
 			shop,
 			name,
 			price,
-			lookHbarPrice,
-			lookXrpPrice,
-			lookNearPrice,
+			lookCryptoPrice,
 			cryptoReceiver,
 			blockchain,
 			medias,
@@ -26,9 +24,7 @@ module.exports = {
 				}
 				looksInstance.set('name', name);
 				looksInstance.set('price', price);
-				looksInstance.set('hbarPrice', parseFloat(lookHbarPrice));
-				looksInstance.set('xrpPrice', parseFloat(lookXrpPrice));
-				looksInstance.set('nearPrice', parseFloat(lookNearPrice));
+				looksInstance.set('cryptoPrice', parseFloat(lookCryptoPrice));
 				looksInstance.set('medias', medias);
 				looksInstance.set('products', products);
 				looksInstance.set('shop', shop);
