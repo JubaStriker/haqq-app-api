@@ -1,1 +1,0 @@
-web: NODE_ENV="DEV" node index.js
