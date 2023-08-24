@@ -77,10 +77,9 @@ module.exports = {
                         const payload = await xumm.payload.create(request, true);
                         console.log("Payload", payload)
                         nftSellOffers.payload = payload;
-
-
-
                     }
+
+                    // Token created
 
                     if (exists(tokenID)) {
                         try {
