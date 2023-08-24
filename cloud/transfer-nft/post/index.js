@@ -40,7 +40,7 @@ module.exports = {
                     const destination = walletInstance.get('walletAddress')
                     console.log("Wallet Address: " + destination)
 
-                    //------------------------- Prepare transaction ---------------------------
+                    // ------------------------- Prepare transaction ---------------------------//
                     let transactionBlob = {
                         "TransactionType": "NFTokenCreateOffer",
                         "Account": standby_wallet.classicAddress,
