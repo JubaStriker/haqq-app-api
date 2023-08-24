@@ -32,7 +32,7 @@ module.exports = {
 				looksInstance.set('cryptoReceiver', cryptoReceiver);
 
 
-
+				// Old lines
 				// if (Parse.User.current() && Parse.User.current().id) {
 				// 	looks.set('createdBy', Parse.User.current());
 				// 	const acl = new Parse.ACL();
