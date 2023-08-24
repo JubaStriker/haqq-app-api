@@ -78,9 +78,6 @@ module.exports = {
                         console.log("Payload", payload)
                         nftSellOffers.payload = payload;
                     }
-
-                    // Token created
-
                     if (exists(tokenID)) {
                         try {
                             const nftsQuery = parseUtils.query("Nfts");
