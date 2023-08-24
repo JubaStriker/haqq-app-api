@@ -25,7 +25,7 @@ module.exports = {
 
 
                 //----------- Prepare expiration -----------//
-                var expirationDate = null
+                var expirationDate = null;
 
                 var days = parseInt(expiration)
                 let d = new Date()
