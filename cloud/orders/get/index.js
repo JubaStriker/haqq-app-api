@@ -8,26 +8,26 @@ module.exports = {
         const { shop } = params;
         if (exists(shop)) {
             try {
-
+                console.log("API HIT! Orders");
                 const shopQuery = parseUtils.query('Shop');
                 shopQuery.equalTo('shop', shop);
                 let shopInstance = await shopQuery.first({ useMasterKey: true });
 
                 if (shopInstance) {
                     const accessToken = shopInstance.get('accessToken')
-                    console.log(accessToken, "Access token")
 
                     const shopifyNodeInstance = shopifyInstance({
                         shopName: shop,
                         accessToken: shopInstance.get('accessToken'),
                     });
 
-                    // shopifyNodeInstance.order
-                    //     .list({ limit: 5 })
-                    //     .then((orders) => console.log(orders, "Orders"))
-                    //     .catch((err) => console.error(err));
+                    shopifyNodeInstance.order
+                        .list({ limit: 5 })
+                        .then((orders) => console.log(orders, "Orders"))
+                        .catch((err) => console.error("Got error: " + err));
 
-                    const orders = await shopifyNodeInstance.order.list({ limit: 50 });
+                    // const orders = await shopifyNodeInstance.order.list({ limit: 50 });
+                    const orders = { order: "Couldn't fetch" }
 
                     return orders;
                 }

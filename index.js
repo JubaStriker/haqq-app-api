@@ -550,7 +550,7 @@ app.get("*", (req, res) => {
   });
 });
 
-app.listen(process.env.PORT || 8000, function () {
+app.listen(process.env.PORT, function () {
   console.log("READY");
 });
 // ParseServer.createLiveQueryServer(httpServer);
