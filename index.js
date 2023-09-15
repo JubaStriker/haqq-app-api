@@ -170,6 +170,7 @@ app.get("/api/get_looks", async (req, res) => {
       params: { shop, id },
     });
     res.status(200).json(data);
+
   } catch (e) {
     res.status(e.code).json(e);
   }
@@ -396,6 +397,7 @@ app.get("/api/get_pools", async (req, res) => {
 app.get("/api/get_xrp_payment", async (req, res) => {
   try {
     const { shop, id } = req.query;
+    console.log(shop, id);
     const data = await get_xrp_payment({
       params: { shop, id },
     });

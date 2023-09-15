@@ -27,7 +27,7 @@ module.exports = {
                     txjson: {
                         TransactionType: "Payment",
                         Destination: shopData.walletAddress,
-                        Amount: xrpToDrops(look.get("xrpPrice")),
+                        Amount: xrpToDrops(look.get("cryptoPrice")),
                         // Amount: dropsToXrp
                     },
                 };
@@ -39,6 +39,8 @@ module.exports = {
                         }
                     }
                 );
+
+                console.log(subscription);
 
 
                 // const resolvedData = await subscription.resolved;
