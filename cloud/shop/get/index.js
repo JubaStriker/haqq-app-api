@@ -7,12 +7,13 @@ module.exports = {
     const { shop, blockchain } = params;
     if (exists(shop, blockchain)) {
       try {
+        console.log(shop, blockchain)
         const shopQuery = parseUtils.query("Shop");
+        console.log(shopQuery)
         shopQuery.equalTo("shop", shop);
         shopQuery.equalTo("blockchain", blockchain);
-
-
         const shopInstance = await shopQuery.first({ useMasterKey: true });
+        console.log("Shop", shopInstance)
 
         if (shopInstance) {
           return {
