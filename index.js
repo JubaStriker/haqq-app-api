@@ -421,9 +421,9 @@ app.get("/api/verify_xrp_payment", async (req, res) => {
 
 app.post("/api/create_nft", async (req, res) => {
   try {
-    const { seed, uri, transferFee, flags, method } = req.body;
+    const { account, uri, method } = req.body;
     const data = await create_nft({
-      params: { seed, uri, transferFee, flags, method },
+      params: { account, uri, method },
     });
     res.status(200).json(data);
 
