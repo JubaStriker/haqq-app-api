@@ -6,31 +6,12 @@ const { XummSdk } = require('xumm-sdk');
 
 module.exports = {
     transfer_nft: async ({ params }) => {
-        const { seed, tokenID, flags, amount, expiration, code } = params;
+        const { account, code, tokenID } = params;
 
-        const net = "wss://s.altnet.rippletest.net:51233"
-        const client = new xrpl.Client(net)
-        await client.connect()
-        const standby_wallet = xrpl.Wallet.fromSeed(seed)
+        const Sdk = new XummSdk(process.env.XUMM_API_KEY_NFT, process.env.XUMM_API_SECRET_KEY_NFT);
 
-        const xumm = new XummSdk(process.env.XUMM_API_KEY_NFT, process.env.XUMM_API_SECRET_KEY_NFT);
-
-        if (seed) {
-
+        if (code) {
             try {
-                const net = "wss://s.altnet.rippletest.net:51233"
-                const client = new xrpl.Client(net)
-                await client.connect()
-                const standby_wallet = xrpl.Wallet.fromSeed(seed)
-
-
-                //----------- Prepare expiration -----------//
-                var expirationDate = null;
-
-                var days = parseInt(expiration)
-                let d = new Date()
-                d.setDate(d.getDate() + parseInt(days))
-                var expirationDate = xrpl.isoTimeToRippleTime(d)
 
                 const customersWalletQuery = parseUtils.query("CustomersWallet");
                 customersWalletQuery.equalTo("code", code);
@@ -38,9 +19,33 @@ module.exports = {
                 const walletInstance = await customersWalletQuery.first({ useMasterKey: true });
                 if (walletInstance) {
                     const destination = walletInstance.get('walletAddress')
-                    console.log("Wallet Address: " + destination)
-
                     // ------------------------- Prepare transaction ---------------------------//
+
+                    const request = {
+                        "TransactionType": "NFTokenCreateOffer",
+                        "Account": account,
+                        "NFTokenID": tokenID,
+                        "Amount": "0",
+                        "Flags": 1,
+                        "Destination": destination
+                    }
+
+                    console.log(request)
+                    const subscription = await Sdk.payload.createAndSubscribe(request, event => {
+                        // console.log('New payload event',event.data)  
+                        if (Object.keys(event.data).indexOf('signed') > -1) {
+                            return event.data
+                        }
+                    })
+
+                    return {
+                        qr: subscription.created.refs.qr_png,
+                        status: subscription.created.refs.websocket_status,
+                    };
+
+                    return request;
+
+
                     let transactionBlob = {
                         "TransactionType": "NFTokenCreateOffer",
                         "Account": standby_wallet.classicAddress,

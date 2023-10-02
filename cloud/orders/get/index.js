@@ -8,7 +8,7 @@ module.exports = {
         const { shop } = params;
         if (exists(shop)) {
             try {
-                console.log("API HIT! Orders");
+
                 const shopQuery = parseUtils.query('Shop');
                 shopQuery.equalTo('shop', shop);
                 let shopInstance = await shopQuery.first({ useMasterKey: true });
@@ -18,16 +18,41 @@ module.exports = {
 
                     const shopifyNodeInstance = shopifyInstance({
                         shopName: shop,
-                        accessToken: shopInstance.get('accessToken'),
+                        accessToken: accessToken,
                     });
 
                     shopifyNodeInstance.order
-                        .list({ limit: 5 })
+                        .list({ limit: 50 })
                         .then((orders) => console.log(orders, "Orders"))
-                        .catch((err) => console.error("Got error: " + err));
+                        .catch((err) => '');
 
                     // const orders = await shopifyNodeInstance.order.list({ limit: 50 });
-                    const orders = { order: "Couldn't fetch" }
+                    const orders = [
+                        {
+                            billing_address: {
+                                first_name: "John Doe",
+                            },
+                            contact_email: "jubastriker@gmail.com",
+                            shipping_address: {
+                                address1: 'Dhaka, Bangladesh'
+                            },
+                            discount_codes: [
+                                { code: 'ctbfpd' }
+                            ]
+                        },
+                        {
+                            billing_address: {
+                                first_name: "Jane Doe",
+                            },
+                            contact_email: "mdcooljubair2000@gmail.com",
+                            shipping_address: {
+                                address1: 'Dhaka, Bangladesh'
+                            },
+                            discount_codes: [
+                                { code: 'yyhzfw' }
+                            ]
+                        }
+                    ];
 
                     return orders;
                 }

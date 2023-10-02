@@ -79,7 +79,7 @@ module.exports = {
     shopifyAuthNode.bootstrap({
       app,
       shopifyAppScopes:
-        "read_script_tags,write_script_tags,read_products,read_discounts,write_discounts,read_price_rules,write_price_rules, read_orders",
+        "read_script_tags,write_script_tags,read_products,read_discounts,write_discounts,read_price_rules,write_price_rules,read_orders",
       shopifyApiKey: process.env.SHOPIFY_API_KEY,
       shopifyApiSecret: process.env.SHOPIFY_API_SECRET,
       shopifyAppUri: process.env.SHOPIFY_DASHBOARD_SERVER_FORWARDING_ADDRESS,
