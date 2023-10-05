@@ -42,68 +42,6 @@ module.exports = {
                         qr: subscription.created.refs.qr_png,
                         status: subscription.created.refs.websocket_status,
                     };
-
-                    return request;
-
-
-                    let transactionBlob = {
-                        "TransactionType": "NFTokenCreateOffer",
-                        "Account": standby_wallet.classicAddress,
-                        "NFTokenID": tokenID,
-                        "Amount": amount,
-                        "Flags": parseInt(flags),
-                        "Destination": destination
-                    }
-
-                    transactionBlob.Destination = destination
-
-
-                    const tx = await client.submitAndWait(transactionBlob, { wallet: standby_wallet })
-
-                    let nftSellOffers;
-                    try {
-                        nftSellOffers = await client.request({
-                            method: "nft_sell_offers",
-                            nft_id: tokenID
-                        })
-                    } catch (err) {
-                        nftSellOffers = "No sell offers."
-                        console.log("Error", err)
-                    }
-
-                    if (nftSellOffers?.result?.offers) {
-                        const request = {
-                            txjson: {
-                                Account: nftSellOffers.result.offers[0].destination,
-                                NFTokenSellOffer: nftSellOffers.result.offers[0].nft_offer_index,
-                                TransactionType: "NFTokenAcceptOffer"
-                            }
-                        }
-                        const payload = await xumm.payload.create(request, true);
-                        console.log("Payload", payload)
-                        nftSellOffers.payload = payload;
-                    }
-                    if (exists(tokenID)) {
-                        try {
-                            const nftsQuery = parseUtils.query("Nfts");
-                            nftsQuery.equalTo("token", tokenID);
-                            const nftsInstance = await nftsQuery.first();
-                            nftsInstance.set('transferred', true);
-                            // const data = await nftsInstance.destroy();
-                            const data = await nftsInstance.save(null);
-                            console.log(data);
-                        }
-                        catch (e) {
-                            const { code, message } = errors.constructErrorObject(
-                                e.code || e.statusCode || 500,
-                                e
-                            );
-                            throw new Parse.Error(code, message);
-                        }
-                    }
-
-                    return nftSellOffers;
-
                 }
                 else {
                     console.log("No wallet address found")

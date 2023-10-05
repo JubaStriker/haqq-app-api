@@ -20,19 +20,22 @@ module.exports = {
                         shopName: shop,
                         accessToken: accessToken,
                     });
+                    const shopifyShopData = await shopifyNodeInstance.shop.get();
 
-                    shopifyNodeInstance.order
-                        .list({ limit: 50 })
-                        .then((orders) => console.log(orders, "Orders"))
-                        .catch((err) => '');
+                    console.log(accessToken, shopifyShopData);
 
-                    // const orders = await shopifyNodeInstance.order.list({ limit: 50 });
+                    // shopifyNodeInstance.order
+                    //     .list()
+                    //     .then((orders) => console.log(orders, "Orders"))
+                    //     .catch((err) => console.log(err, "Error"));
+
+                    // const orders1 = await shopifyNodeInstance.order.list({ limit: 50 });
                     const orders = [
                         {
                             billing_address: {
                                 first_name: "John Doe",
                             },
-                            contact_email: "jubastriker@gmail.com",
+                            contact_email: "johndoe@gmail.com",
                             shipping_address: {
                                 address1: 'Dhaka, Bangladesh'
                             },
@@ -44,7 +47,7 @@ module.exports = {
                             billing_address: {
                                 first_name: "Jane Doe",
                             },
-                            contact_email: "mdcooljubair2000@gmail.com",
+                            contact_email: "janedoe@gmail.com",
                             shipping_address: {
                                 address1: 'Dhaka, Bangladesh'
                             },

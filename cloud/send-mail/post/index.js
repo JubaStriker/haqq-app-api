@@ -3,6 +3,7 @@ const errors = require("../../utils/error-handling/index");
 const parseUtils = require("../../utils/parse-utils/index");
 const xrpl = require("xrpl");
 const { XummSdk } = require('xumm-sdk');
+const nodemailer = require('nodemailer');
 
 module.exports = {
     send_mail: async ({ params }) => {
@@ -48,6 +49,43 @@ module.exports = {
                     // const data = await nftsInstance.destroy();
                     const data = await nftsInstance.save(null);
 
+
+                    const html = `
+                    <!DOCTYPE html>
+                    <html lang="en">
+                    
+                    <head>
+                        <meta charset="UTF-8">
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                        <title>Free NFT</title>
+                    </head>
+                    
+                    <body>
+                        <h1>Congratulations! ${name}</h1>
+                        <h4>You just received a free NFToken</h4>
+                        <h4>Please scan the QR code below with your Xumm app on your smartphone to accept</h4>
+                        <img src="${subscription.created.refs.qr_png}" alt="">
+                    </body>
+                    
+                    </html>`
+
+                    const transporter = nodemailer.createTransport({
+                        host: 'smtp.ethereal.email',
+                        port: 587,
+                        auth: {
+                            user: 'raphael.gibson93@ethereal.email',
+                            pass: 'HxteaCgCV5MNYcZGXQ'
+                        }
+                    })
+
+                    const info = await transporter.sendMail({
+                        from: "Jubair Hossain <rafaela.ledner@ethereal.email>",
+                        to: email,
+                        subject: "NFT badge reward",
+                        html: html,
+                    })
+
+                    console.log("Message sent: " + info.messageId)
 
                     return {
                         qr: subscription.created.refs.qr_png,

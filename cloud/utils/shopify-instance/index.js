@@ -3,7 +3,7 @@ const ShopifyNodeApi = require('shopify-api-node');
 const shopifyNodeInstance = ({
     shopName,
     accessToken,
-    apiVersion= '2021-10'
+    apiVersion = '2023-01'
 }) => new ShopifyNodeApi({
     shopName,
     accessToken,
