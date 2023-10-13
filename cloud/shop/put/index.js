@@ -5,6 +5,7 @@ const { exists } = require("../../utils/validate");
 module.exports = {
   put_shop: async ({ params, user }) => {
     const { shop, walletAddress, walletToken, blockchain } = params;
+    console.log(params)
     if (exists(shop)) {
       try {
         console.log("BLCHN", blockchain)

@@ -48,6 +48,7 @@ const { customers_wallet } = require("./cloud/customers-wallet/post");
 const { send_mail } = require("./cloud/send-mail/post");
 const { nft_store } = require("./cloud/nft-store/post");
 const { get_nfts } = require("./cloud/nft-store/get");
+const { get_transactions } = require("./cloud/islm-transaction/get");
 
 
 const app = express();
@@ -514,6 +515,18 @@ app.post("/api/send_mail", async (req, res) => {
 
   } catch (e) {
     console.error(e);
+    res.status(500).json(e);
+  }
+});
+
+app.get("/api/islm_transactions", async (req, res) => {
+  try {
+    const { walletAddress } = req.query;
+    const data = await get_transactions({
+      params: { walletAddress },
+    });
+    res.status(200).json(data);
+  } catch (e) {
     res.status(500).json(e);
   }
 });

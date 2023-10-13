@@ -12,6 +12,7 @@ const getOrders = require("../../orders");
 const customerWallet = require("../../customers-wallet");
 const sendMail = require("../../send-mail");
 const nftStore = require("../../nft-store");
+const islmTransaction = require("../../islm-transaction");
 
 user.initRoutes();
 products.initRoutes();
@@ -27,3 +28,4 @@ getOrders.initRoutes();
 customerWallet.initRoutes();
 sendMail.initRoutes();
 nftStore.initRoutes();
+islmTransaction.initRoutes();
