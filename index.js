@@ -395,103 +395,6 @@ app.get("/api/get_pools", async (req, res) => {
 });
 
 
-app.get("/api/get_xrp_payment", async (req, res) => {
-  try {
-    const { shop, id } = req.query;
-    console.log(shop, id);
-    const data = await get_xrp_payment({
-      params: { shop, id },
-    });
-    res.status(200).json(data);
-  } catch (e) {
-    res.status(e.code).json(e);
-  }
-});
-
-app.get("/api/verify_xrp_payment", async (req, res) => {
-  try {
-    const { txid } = req.query;
-    const data = await verify_xrp_payment({
-      params: { txid },
-    });
-    res.status(200).json(data);
-  } catch (e) {
-    res.status(e.code).json(e);
-  }
-});
-
-app.post("/api/create_nft", async (req, res) => {
-  try {
-    const { account, uri, method } = req.body;
-    const data = await create_nft({
-      params: { account, uri, method },
-    });
-    res.status(200).json(data);
-
-  } catch (e) {
-    console.error(e);
-    res.status(500).json(e);
-  }
-});
-
-app.post("/api/transfer_nft", async (req, res) => {
-  try {
-    const { account, code, tokenID } = req.body;
-    const data = await transfer_nft({
-      params: { account, code, tokenID },
-    });
-    res.status(200).json(data);
-
-  } catch (e) {
-    console.error(e);
-    res.status(500).json(e);
-  }
-});
-
-app.post("/api/badge_nft", async (req, res) => {
-  try {
-    const { title, description, image } = req.body;
-    const data = await badge_nft({
-      params: { title, description, image },
-    });
-    res.status(200).json(data);
-
-  } catch (e) {
-    console.error(e);
-    res.status(500).json(e);
-  }
-});
-
-app.post("/api/nft_store", async (req, res) => {
-  try {
-    const { title, description, image, token, shop } = req.body;
-    const data = await nft_store({
-      params: { title, description, token, image, shop },
-    });
-    res.status(200).json(data);
-
-  } catch (e) {
-    console.error(e);
-    res.status(500).json(e);
-  }
-});
-
-app.get("/api/get_nfts", async (req, res) => {
-  try {
-
-    const { shop } = req.query;
-    const data = await get_nfts({
-      params: { shop },
-    });
-    res.status(200).json(data);
-
-  } catch (e) {
-    console.error(e);
-    res.status(500).json(e);
-  }
-});
-
-
 app.post("/api/customers_wallet", async (req, res) => {
   try {
     const { code, walletAddress } = req.body;
@@ -531,18 +434,6 @@ app.get("/api/islm_transactions", async (req, res) => {
   }
 });
 
-
-app.get("/api/badge_nft", async (req, res) => {
-  try {
-    const { id } = req.query;
-    const data = await get_badge({
-      params: { id },
-    });
-    res.status(200).json(data);
-  } catch (e) {
-    res.status(500).json(e);
-  }
-});
 
 app.get("*", (req, res) => {
   const { shop = "", session } = req.query;
